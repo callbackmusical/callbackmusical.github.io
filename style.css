@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "Apple Garamond";
+  src: url("/apple_garamond/AppleGaramond.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Apple Garamond", serif;
+  font-size: 1.5em;
+  background: black;
+  color: white;
+}
+
+h1 {
+  text-shadow: 0px 0px 20px #ffff00ee;
+}
