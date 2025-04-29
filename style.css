@@ -35,7 +35,7 @@ h2 {
   max-width: 95%;
   margin: 0 auto;
   margin-top: revert;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 h3 {
@@ -48,7 +48,7 @@ ul {
 }
 
 p {
-  margin-top: 5px;
+  margin-top: 0px;
   margin-bottom: revert;
 }
 

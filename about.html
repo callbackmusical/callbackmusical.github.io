@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CALLBACK | ABOUT THE SHOW</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1>CALL<a href="./index.html" style="color: #ffff00">BACK</a></h1>
+    <h3>an original comedy musical</h3>
+
+    <h2>About the Show</h2>
+    
+    <p>CALLBACK is <span id="a-or-an">a</span> <a href="javascript:void(0);" onclick="nextThing()" id="musical-about">comedy musical about comedy</a>.</p>
+
+    <h2>Alt Titles</h2>
+
+      <p>Live, Laugh, Love: The Musical</p>
+      <p>Imposters Theater: The Musical</p>
+      <p>All That Jazz 2: Considerably Less of That Jazz</p>
+
+
+    <h2>For fans of</h2>
+
+      <p>Bo Burnham</p>
+      <p>The Weakerthans</p>
+      <p>Dropout TV</p>
+      <p>La La Land</p>
+      <p>Petey USA</p>
+
+    
+    <p></p>
+    <p></p>
+    <p></p>
+    <script>
+      const descriptors = [" comedy musical about comedy", " folk musical", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " musical about Cleveland comedy", "n inside baseball show about improv", " show about self-worth", "n extremely personal show", " lot", " musical with no fewer than twelve songs", " musical with no more than 235 jokes", " PG show (includes some references to alcohol but that's it)", " very personal passion project", " really good show", " show for performers", " show for former gifted kids", " show for anyone who wants to be famous", " show written by a local songwriter who has no business writing a musical", " must-see show for anyone who has ever lived", " musical I guess", " brand new musical", " musical unlike any other (not necessarily in a good way)", " show", " musical", " fun time", "n emotional roller coaster", " midwest emo musical", " folk punk musical", " indie musical", "independent production (collar pull)", " musical starring Sarah Demetruk", " musical written by Joseph Maxwell", " show that I am sad my dad will never get to see because he has died", " show that means so much to me, thank you for even considering coming to see it", " completely sincere farce", " commentary on the philosophy of absurdism", " silly little goofy type of show", " fun thing for you to come see with your friends", " show to which you can bring your kids and your parents", " show about friendship", " show about community"
+      ]
+
+      let currentIndex = 0;
+      const musicalAboutA = document.querySelector("#musical-about");
+
+      function pickRandomFromListExceptingIndex(list) {
+        const randomNum = Math.floor(Math.random() * list.length);
+        if (randomNum === currentIndex) {
+          return pickRandomFromListExceptingIndex(list, currentIndex);
+        } else {
+          currentIndex = randomNum;
+          return list[randomNum];
+        }
+      }
+
+      function nextThing() {
+        const newDesc = pickRandomFromListExceptingIndex(descriptors, currentIndex);
+          if (newDesc[0] === " ") {
+            document.querySelector("#a-or-an").innerHTML = "a";
+            musicalAboutA.innerHTML = newDesc.substring(1);
+          } else if (newDesc[0] === "n") {
+            document.querySelector("#a-or-an").innerHTML = "an";
+            musicalAboutA.innerHTML = newDesc.substring(2);
+          }
+      }
+    </script>
+  </body>
+</html>
