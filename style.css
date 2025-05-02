@@ -79,6 +79,10 @@ p.clicky {
   height: 70px;
 }
 
+li {
+  margin-bottom: 3px;
+}
+
 .role {
   border: 5px dotted white;
   padding-top: 10px;
