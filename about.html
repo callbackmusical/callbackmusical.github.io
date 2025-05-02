@@ -10,46 +10,58 @@
 
     <h2>About the Show</h2>
     
-    <p>CALLBACK is <span id="a-or-an">a</span> <a href="javascript:void(0);" onclick="nextThing()" id="musical-about">comedy musical about comedy</a>.</p>
+    <p class="clicky">CALLBACK is <span id="a-or-an">a</span> <a href="javascript:void(0);" onclick="nextThing()" id="musical-about">comedy musical about comedy</a>.</p>
 
     <h2>Alt Titles</h2>
-
-      <p>Live, Laugh, Love: The Musical</p>
-      <p>Imposters Theater: The Musical</p>
-      <p>All That Jazz 2: Considerably Less of That Jazz</p>
-
+    <ul>
+      <li>Live, Laugh, Love: The Musical</li>
+      <li>Imposters Theater: The Musical</li>
+      <li>All That Jazz 2: Considerably Less of That Jazz</li>
+    </ul>
 
     <h2>For fans of</h2>
+    <ul>
+      <li>Bo Burnham</li>
+      <li>The Weakerthans</li>
+      <li>Dropout TV</li>
+      <li>La La Land</li>
+      <li>Petey USA</li>
+    </ul>
 
-      <p>Bo Burnham</p>
-      <p>The Weakerthans</p>
-      <p>Dropout TV</p>
-      <p>La La Land</p>
-      <p>Petey USA</p>
+    <h2>The production team</h2>
+    <ul>
+      <li><b>Writer/Director:</b> Joseph S. Maxwell</li>
+      <li><b>Music Director:</b> S.D.K. Boyle</li>
+      <li><b>Assistant Director:</b> Jonah Raider-Roth</li>
+    </ul>
 
     
     <p></p>
     <p></p>
     <p></p>
     <script>
-      const descriptors = [" comedy musical about comedy", " comedy musical about comedy", " comedy musical about comedy", " comedy musical about comedy", " folk musical", " folk musical", " folk musical", " folk musical", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " musical about Cleveland comedy", "n inside baseball show about improv", " show about self-worth", "n extremely personal show", " lot", " musical with no fewer than twelve songs", " musical with no more than 235 jokes", " PG show (includes some references to alcohol but that's it)", " very personal passion project", " really good show", " show for performers", " show for former gifted kids", " show for anyone who wants to be famous", " show written by a local songwriter who has no business writing a musical", " must-see show for anyone who has ever lived", " musical I guess", " brand new musical", " musical unlike any other (not necessarily in a good way)", " show", " musical", " fun time", "n emotional roller coaster", " midwest emo musical", " midwest emo musical", " midwest emo musical", " folk punk musical", "n indie musical", "n indie musical", "n indie musical", "n indie musical", "n independent production (collar pull)", " musical starring Sarah Demetruk", " musical written by Joseph Maxwell", " show that I am sad my dad will never get to see because he has died", " show that means so much to me, thank you for even considering coming to see it", " completely sincere farce", " commentary on the philosophy of absurdism", " silly little goofy type of show", " fun thing for you to come see with your friends", " show to which you can bring your kids and your parents", " show about friendship", " show about community", " show about community", " show about community", " show about community", " show about community"
-      ]
+      const descriptors = [" folk musical", " folk musical", " folk musical", " folk musical", " folk musical", " musical about Cleveland", " musical about Cleveland", " musical about Cleveland", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " DIY musical", " DIY musical", " DIY musical", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " musical about Cleveland", " musical about Miller High Life", " musical about alternative comedy", " DIY musical", " musical about Cleveland comedy", "n inside baseball show about improv", " show about self-worth", "n extremely personal show", " lot", " musical with no fewer than twelve songs", " musical with no more than 235 jokes", " PG show (includes some references to alcohol but that's it)", " very personal passion project", " really good show", " show for performers", " show for former gifted kids", " show for anyone who wants to be famous", " show written by a local songwriter who has no business writing a musical", " must-see show for anyone who has ever lived", " musical I guess", " brand new musical", " musical unlike any other (not necessarily in a good way)", " musical", " fun time", "n emotional roller coaster", " midwest emo musical", " midwest emo musical", " midwest emo musical", " folk punk musical", "n indie musical", "n indie musical", "n indie musical", "n indie musical", "n independent production (collar pull)", " musical starring Sarah Demetruk", " show that I am sad my dad will never get to see because he has died", " show that means so much to me, thank you for even considering coming to see it", " completely sincere farce", " commentary on the philosophy of absurdism", " silly little goofy type of show", " fun thing for you to come see with your friends", " show to which you can bring your kids and your parents", " show about friendship", " show about community", " show about community"
+      ];
 
-      let currentIndex = 0;
+      const seenDescriptors = [];
       const musicalAboutA = document.querySelector("#musical-about");
 
-      function pickRandomFromListExceptingIndex(list) {
-        const randomNum = Math.floor(Math.random() * list.length);
-        if (randomNum === currentIndex) {
-          return pickRandomFromListExceptingIndex(list, currentIndex);
-        } else {
-          currentIndex = randomNum;
-          return list[randomNum];
+      function pickRandomFromListExceptingSome(list) {
+        const listWithoutSeen = list.filter(item => !seenDescriptors.includes(item));
+        if (listWithoutSeen.length === 0) {
+          musicalAboutA.removeAttribute("href");
+          musicalAboutA.removeAttribute("onclick");
+          return " show";
         }
+
+        const randomNum = Math.floor(Math.random() * listWithoutSeen.length);
+        const nextDescriptor = listWithoutSeen[randomNum];
+        seenDescriptors.push(nextDescriptor);
+        return nextDescriptor;
       }
 
       function nextThing() {
-        const newDesc = pickRandomFromListExceptingIndex(descriptors, currentIndex);
+        const newDesc = pickRandomFromListExceptingSome(descriptors);
           if (newDesc[0] === " ") {
             document.querySelector("#a-or-an").innerHTML = "a";
             musicalAboutA.innerHTML = newDesc.substring(1);
