@@ -112,3 +112,9 @@ li {
     color: black;
   }
 }
+
+a.fa {
+  text-decoration: none;
+  font-size: 1.5em;
+  padding: 20px;
+}
